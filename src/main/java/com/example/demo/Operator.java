@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+@Component
 public class Operator {
 
     Scanner sc = new Scanner(System.in);
