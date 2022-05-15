@@ -5,19 +5,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-	@SpringBootApplication
-	public class DemoApplication implements CommandLineRunner {
+@SpringBootApplication
+public class DemoApplication implements CommandLineRunner {
 
-		@Autowired
-		private Operator operator;
+    @Autowired
+    private Operator operator;
 
-		public static void main(String[] args) {
-			SpringApplication.run(com.example.demo.DemoApplication.class, args);
-		}
+    public static void main(String[] args) {
+        SpringApplication.run(com.example.demo.DemoApplication.class, args);
+    }
 
-		@Override
-		public void run(String... args) {
-			operator.connection();
-		}
+    @Override
+    public void run(String... args) {
+        operator.connection();
+    }
 
-	}
+}

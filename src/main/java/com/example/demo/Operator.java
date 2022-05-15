@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.entity.Appointment;
+import com.example.demo.repository.AppointmentRepository;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -12,14 +14,18 @@ import java.util.Scanner;
 @Component
 public class Operator {
 
+    private AppointmentRepository appointmentRepository;
     Scanner sc = new Scanner(System.in);
     String profile;
     int inputNo;
-    String clientName;
-    //String clientLastName;
+    String firstName;
+    String lastName;
     String phoneNumber;
     Connection connection = null;
 
+    public Operator(AppointmentRepository appointmentRepository) {
+        this.appointmentRepository = appointmentRepository;
+    }
 
     public void connection() {
 
@@ -28,12 +34,16 @@ public class Operator {
 
         if (profile.equals("1")) {
             System.out.println("Hello, dear client!");
-            System.out.println("Please, enter your name:");
-            clientName = sc.nextLine();
+            System.out.println("Please, enter your first name:");
+            firstName = sc.nextLine();
+            System.out.println("Please, enter your last name:");
+            lastName = sc.nextLine();
             System.out.println("Please, enter your phone number: ");
             phoneNumber = sc.nextLine();
-            System.out.println("Dear, " + clientName + "! Thank you for your appointment booking. We will call you back to number " + phoneNumber);
-
+            Appointment newAppointment = new Appointment(firstName, lastName, phoneNumber);
+            appointmentRepository.save(newAppointment);
+            System.out.println("Dear, " + firstName + "! Thank you for your appointment booking. We will call you back to number " + phoneNumber);
+            sc.nextLine();
         } else if (profile.equals("2")) {
             System.out.println("hello admin!");
             try {
@@ -64,9 +74,9 @@ public class Operator {
                     case 1:
                         while (rs.next()) {
                             inputNo = (int) rs.getObject(1);
-                            clientName = rs.getObject(2).toString();
+                            firstName = rs.getObject(2).toString();
                             phoneNumber = rs.getObject(3).toString();
-                            System.out.println(inputNo + " " + clientName + " " + phoneNumber);
+                            System.out.println(inputNo + " " + firstName + " " + phoneNumber);
                         }
                         break;
                     case 2:
