@@ -15,6 +15,9 @@ public class Appointment {
     private String lastName;
     private String phoneNumber;
 
+    public Appointment() {
+    }
+
     public Appointment(String firstName, String lastName, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,5 +38,13 @@ public class Appointment {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment Nr." + id +
+                ", " + firstName +
+                " " + lastName +
+                ", " + phoneNumber;
     }
 }
