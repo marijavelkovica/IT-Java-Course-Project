@@ -53,13 +53,13 @@ public class Operator {
                 System.out.println("Press 1 to submit another appointment. Press 0 to finish the registration.");
                 profile = scanner.nextLine();
             }
-            if (profile.equals("0")){ // pievineoju
+            if (profile.equals("0")){
                 System.out.println("Thank you. Good bye! You can close the application now!");
             }
         } else if (profile.equals("2")) {
             System.out.println("Hello admin!");
 
-            while (true) { //pievienoju
+            while (true) {
                 System.out.println("Press 1 to see all inputs, press 2 to search, press 3 to exit: ");
 
                 int input = scanner.nextInt();
@@ -109,8 +109,8 @@ public class Operator {
                         }
                     }
                 } else if (input == 3) { // pievienoju
-                    System.out.println("You have finished your work and can close the application! Have a nice day!"); // pievienoju
-                    break; // pievienoju
+                    System.out.println("You have finished your work and can close the application! Have a nice day!");
+                    break;
                 } else {
                     System.out.println("Wrong input");
                 }
