@@ -36,41 +36,85 @@ public class Operator {
 
                 System.out.println("Please, enter your last name:");
                 String lastName = scanner.nextLine();
+                while (lastName.length() == 0) { // pievienoju
+                    System.out.println("Last name cannot be empty, please try again:");// pievienoju
+                    lastName = scanner.nextLine();// pievienoju
+                } // pievienoju
                 System.out.println("Please, enter your phone number: ");
                 String phoneNumber = scanner.nextLine();
-
+                while (!phoneNumber.matches("\\d{8}")) { // pievienoju
+                    System.out.println("Wrong phone number! It should be 8 digits."); // pievienoju
+                    phoneNumber = scanner.nextLine(); // pievienoju
+                } // pievienoju
                 Appointment newAppointment = new Appointment(firstName, lastName, phoneNumber);
                 appointmentRepository.save(newAppointment);
 
-                System.out.println("Dear, " + firstName + "! Thank you for your appointment booking. We will call you back to number " + phoneNumber);
-                System.out.println("Press 1 to submit another appointment. Press 0 to close the application");
+                System.out.println("Dear, " + firstName + "! Thank you! Your request is registered. We will call you back to number " + phoneNumber);
+                System.out.println("Press 1 to submit another appointment. Press 0 to finish the registration."); // palaboju tekstu
                 profile = scanner.nextLine();
             }
+            if (profile.equals("0")){ // pievineoju
+                System.out.println("Thank you. Good bye! You can close the application now!");// pievineoju
+            }
         } else if (profile.equals("2")) {
-            System.out.println("hello admin!");
+            System.out.println("Hello admin!");
 
-            System.out.println("press 1 to see all inputs, to search press 2: ");
+            while (true) { //pievienoju
+                System.out.println("Press 1 to see all inputs, press 2 to search, press 3 to exit: ");
 
-            int input = scanner.nextInt();
-            if (input == 1) {
-                List<Appointment> allAppointments = appointmentRepository.findAll();
-                for (Appointment appointment : allAppointments) {
-                    System.out.println(appointment);
-                }
-            } else if (input == 2) {
-                System.out.println("Enter search value (last name):");
-                String searchInput = scanner.next();
-                List<Appointment> searchResults = appointmentRepository.findByLastName(searchInput);
-                if (searchResults.isEmpty()) {
-                    System.out.println("No appointments found with last name " + searchInput);
-                } else {
-                    for (Appointment appointment : searchResults) {
+                int input = scanner.nextInt();
+                if (input == 1) {
+                    List<Appointment> allAppointments = appointmentRepository.findAll();
+                    for (Appointment appointment : allAppointments) {
                         System.out.println(appointment);
                     }
+                } else if (input == 2) {
+                    System.out.println("If you want to search by name, press 1; If you want to search by surname, press 2; If you want to search by phone, press 3:");
+                    int search = scanner.nextInt();
+
+                    if (search == 1) {
+                        System.out.println("Enter search value (first name):");
+                        String searchInput = scanner.next();
+                        List<Appointment> searchResults = appointmentRepository.findByFirstName(searchInput);
+                        if (searchResults.isEmpty()) {
+                            System.out.println("No appointments found with first name " + searchInput);
+                        } else {
+                            for (Appointment appointment : searchResults) {
+                                System.out.println(appointment);
+                            }
+                        }
+                    }
+                    else if (search == 2) {
+                        System.out.println("Enter search value (last name):");
+                        String searchInput = scanner.next();
+                        List<Appointment> searchResults = appointmentRepository.findByLastName(searchInput);
+                        if (searchResults.isEmpty()) {
+                            System.out.println("No appointments found with last name " + searchInput);
+                        } else {
+                            for (Appointment appointment : searchResults) {
+                                System.out.println(appointment);
+                            }
+                        }
+                    }
+                    else if (search == 3) {
+                        System.out.println("Enter search value (Phone Number):");
+                        String searchInput = scanner.next();
+                        List<Appointment> searchResults = appointmentRepository.findByPhoneNumber(searchInput);
+                        if (searchResults.isEmpty()) {
+                            System.out.println("No appointments found with Phone Number" + searchInput);
+                        } else {
+                            for (Appointment appointment : searchResults) {
+                                System.out.println(appointment);
+                            }
+                        }
+                    }
+                } else if (input == 3) { // pievienoju
+                    System.out.println("You have finished your work and can close the application! Have a nice day!"); // pievienoju
+                    break; // pievienoju
+                } else {
+                    System.out.println("Wrong input");
                 }
-            } else {
-                System.out.println("Wrong input");
-            }
+            } // pievienoju
         }
     }
 }
