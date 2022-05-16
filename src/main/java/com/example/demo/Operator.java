@@ -36,25 +36,25 @@ public class Operator {
 
                 System.out.println("Please, enter your last name:");
                 String lastName = scanner.nextLine();
-                while (lastName.length() == 0) { // pievienoju
-                    System.out.println("Last name cannot be empty, please try again:");// pievienoju
-                    lastName = scanner.nextLine();// pievienoju
+                while (lastName.length() == 0) {
+                    System.out.println("Last name cannot be empty, please try again:");
+                    lastName = scanner.nextLine();
                 } // pievienoju
                 System.out.println("Please, enter your phone number: ");
                 String phoneNumber = scanner.nextLine();
-                while (!phoneNumber.matches("\\d{8}")) { // pievienoju
-                    System.out.println("Wrong phone number! It should be 8 digits."); // pievienoju
-                    phoneNumber = scanner.nextLine(); // pievienoju
+                while (!phoneNumber.matches("\\d{8}")) {
+                    System.out.println("Wrong phone number! It should be 8 digits.");
+                    phoneNumber = scanner.nextLine();
                 } // pievienoju
                 Appointment newAppointment = new Appointment(firstName, lastName, phoneNumber);
                 appointmentRepository.save(newAppointment);
 
                 System.out.println("Dear, " + firstName + "! Thank you! Your request is registered. We will call you back to number " + phoneNumber);
-                System.out.println("Press 1 to submit another appointment. Press 0 to finish the registration."); // palaboju tekstu
+                System.out.println("Press 1 to submit another appointment. Press 0 to finish the registration.");
                 profile = scanner.nextLine();
             }
             if (profile.equals("0")){ // pievineoju
-                System.out.println("Thank you. Good bye! You can close the application now!");// pievineoju
+                System.out.println("Thank you. Good bye! You can close the application now!");
             }
         } else if (profile.equals("2")) {
             System.out.println("Hello admin!");
@@ -114,7 +114,7 @@ public class Operator {
                 } else {
                     System.out.println("Wrong input");
                 }
-            } // pievienoju
+            }
         }
     }
 }
